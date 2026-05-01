@@ -161,10 +161,3 @@ span.highlight {
 .footer-divider {
   color: #ccc;
 }
-
-.views-badge {
-  height: 18px;
-  opacity: 0.55;
-  filter: grayscale(1);
-  vertical-align: middle;
-}
