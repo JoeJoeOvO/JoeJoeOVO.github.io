@@ -1,0 +1,54 @@
+{
+  "updated_utc": "2026-05-01T20:24:09Z",
+  "metrics": {
+    "transsafe-video": {
+      "kind": "bilibili",
+      "metric": "views",
+      "count": 253,
+      "display": "253 views",
+      "bvid": "BV1DcPvzVEoT"
+    },
+    "transsafe-code": {
+      "kind": "github",
+      "metric": "stars",
+      "count": 0,
+      "display": "0 stars",
+      "repo": "JoeJoeOvO/Transfer-Your-Safety"
+    },
+    "safetyfirst-video": {
+      "kind": "bilibili",
+      "metric": "views",
+      "count": 1825,
+      "display": "1.8k views",
+      "bvid": "BV1yk2MBUE13"
+    },
+    "safetyfirst-code": {
+      "kind": "github",
+      "metric": "stars",
+      "count": 3,
+      "display": "3 stars",
+      "repo": "JoeJoeOvO/Safety-first"
+    },
+    "idmb-code": {
+      "kind": "github",
+      "metric": "stars",
+      "count": 5,
+      "display": "5 stars",
+      "repo": "CLASS-Lab/BlueROV2Heavy-Gazebo-with-IDMB-CBF-DOB"
+    },
+    "cac-video": {
+      "kind": "bilibili",
+      "metric": "views",
+      "count": 2415,
+      "display": "2.4k views",
+      "bvid": "BV1aTFLeWEki"
+    },
+    "cac-code": {
+      "kind": "github",
+      "metric": "stars",
+      "count": 1,
+      "display": "1 star",
+      "repo": "JoeJoeOvO/Certificated-Actor-Critic"
+    }
+  }
+}

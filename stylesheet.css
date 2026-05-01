@@ -121,7 +121,7 @@ h2 {
 }
 
 .paper-button,
-.resource-link {
+.resource-button {
   display: inline-flex;
   align-items: center;
   min-height: 23px;
@@ -133,18 +133,16 @@ h2 {
   white-space: nowrap;
 }
 
-.paper-button {
+.paper-button,
+.resource-button {
   overflow: hidden;
   color: var(--color-blue);
   border-color: #cfe0f1;
   background: #f7fbff;
 }
 
-.resource-link {
-  color: var(--color-blue);
-}
-
-.paper-button-label {
+.paper-button-label,
+.resource-label {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -152,11 +150,6 @@ h2 {
   padding: 4px 8px;
   font-size: 12px;
   line-height: 1.2;
-}
-
-.resource-link {
-  gap: 4px;
-  padding: 4px 8px;
 }
 
 .link-icon {
@@ -178,24 +171,27 @@ h2 {
 
 .paper-button:hover,
 .paper-button:focus,
-.resource-link:hover,
-.resource-link:focus {
+.resource-button:hover,
+.resource-button:focus {
   border-color: var(--color-orange);
 }
 
 .paper-button:hover,
 .paper-button:focus,
-.resource-link:hover,
-.resource-link:focus {
+.resource-button:hover,
+.resource-button:focus {
   color: #f09228;
 }
 
 .paper-button:hover .citation-count,
-.paper-button:focus .citation-count {
+.paper-button:focus .citation-count,
+.resource-button:hover .resource-metric,
+.resource-button:focus .resource-metric {
   color: #777;
 }
 
-.citation-count {
+.citation-count,
+.resource-metric {
   display: inline-flex;
   align-items: center;
   align-self: stretch;
@@ -206,7 +202,22 @@ h2 {
   font-size: 12px;
 }
 
-.citation-count[hidden] {
+.resource-metric {
+  border-left-color: rgba(0, 0, 0, .08);
+}
+
+.video-link .resource-metric {
+  background: #fff0ec;
+  color: #95604f;
+}
+
+.code-link .resource-metric {
+  background: #edf8ef;
+  color: #557461;
+}
+
+.citation-count[hidden],
+.resource-metric[hidden] {
   display: none;
 }
 
