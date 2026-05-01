@@ -8,7 +8,7 @@
     <meta name="author" content="Junjun Xie">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css?v=20260502e">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css?v=20260502f">
     <script defer src="https://cn.vercount.one/js"></script>
     
   </head>
@@ -89,8 +89,8 @@
     <!-- <a href="https://haian-jin.github.io/ZipMap/">project page</a> / -->
     <!-- <a href="https://arxiv.org/abs/2603.04385">arXiv</a> / -->
     <span class="paper-links">
-      <a href="https://www.bilibili.com/video/BV1DcPvzVEoT/">Video</a>
-      <a href="https://github.com/JoeJoeOvO/Transfer-Your-Safety">Code</a>
+      <a class="resource-link" href="https://www.bilibili.com/video/BV1DcPvzVEoT/">Video</a>
+      <a class="resource-link" href="https://github.com/JoeJoeOvO/Transfer-Your-Safety">Code</a>
     </span>
     <p></p>
     <p>
@@ -133,10 +133,12 @@
     <!-- <a href="https://haian-jin.github.io/ZipMap/">project page</a> / -->
     <!-- <a href="https://arxiv.org/abs/2603.04385">arXiv</a> / -->
     <span class="paper-links">
-      <a href="https://ieeexplore.ieee.org/document/11230627">Paper</a>
-      <span class="citation-count" data-citation-key="safetyfirst" hidden>Cited by <span class="citation-value"></span></span>
-      <a href="https://www.bilibili.com/video/BV1yk2MBUE13/">Video</a>
-      <a href="https://github.com/JoeJoeOvO/Safety-first">Code</a>
+      <span class="paper-button">
+        <a class="paper-button-link" href="https://ieeexplore.ieee.org/document/11230627">Paper</a>
+        <span class="citation-count" data-citation-key="safetyfirst" hidden><span class="citation-value"></span> <span class="citation-label">citations</span></span>
+      </span>
+      <a class="resource-link" href="https://www.bilibili.com/video/BV1yk2MBUE13/">Video</a>
+      <a class="resource-link" href="https://github.com/JoeJoeOvO/Safety-first">Code</a>
     </span>
     <p></p>
     <p>
@@ -178,9 +180,11 @@
     <em>Ocean Engineering</em>, 2025
     <br>
     <span class="paper-links">
-      <a href="https://www.sciencedirect.com/science/article/pii/S0029801825018669">Paper</a>
-      <span class="citation-count" data-citation-key="idmb" hidden>Cited by <span class="citation-value"></span></span>
-      <a href="https://github.com/CLASS-Lab/BlueROV2Heavy-Gazebo-with-IDMB-CBF-DOB">Code</a>
+      <span class="paper-button">
+        <a class="paper-button-link" href="https://www.sciencedirect.com/science/article/pii/S0029801825018669">Paper</a>
+        <span class="citation-count" data-citation-key="idmb" hidden><span class="citation-value"></span> <span class="citation-label">citations</span></span>
+      </span>
+      <a class="resource-link" href="https://github.com/CLASS-Lab/BlueROV2Heavy-Gazebo-with-IDMB-CBF-DOB">Code</a>
     </span>
     <p></p>
     <p>
@@ -223,10 +227,12 @@
     <!-- <a href="https://haian-jin.github.io/ZipMap/">project page</a> / -->
     <!-- <a href="https://arxiv.org/abs/2603.04385">arXiv</a> / -->
     <span class="paper-links">
-      <a href="https://ieeexplore.ieee.org/document/11127225/">Paper</a>
-      <span class="citation-count" data-citation-key="cac" hidden>Cited by <span class="citation-value"></span></span>
-      <a href="https://www.bilibili.com/video/BV1aTFLeWEki/">Video</a>
-      <a href="https://github.com/JoeJoeOvO/Certificated-Actor-Critic">Code</a>
+      <span class="paper-button">
+        <a class="paper-button-link" href="https://ieeexplore.ieee.org/document/11127225/">Paper</a>
+        <span class="citation-count" data-citation-key="cac" hidden><span class="citation-value"></span> <span class="citation-label">citations</span></span>
+      </span>
+      <a class="resource-link" href="https://www.bilibili.com/video/BV1aTFLeWEki/">Video</a>
+      <a class="resource-link" href="https://github.com/JoeJoeOvO/Certificated-Actor-Critic">Code</a>
     </span>
     <p></p>
     <p>
@@ -246,15 +252,26 @@
               </td>
             </tr>
           </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <table class="service-table"><tbody>
 
           <tr>
 
-            <td style="padding:8px;width:80%;vertical-align:center">
-              The reviewer for the following journals and conferences:<br>
-              IEEE Conference on Decision and Control (CDC), 2026</a><br>
-              IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2025-2026</a><br>				  
-              Automatica, 2025</a><br>
+            <td>
+              <p class="service-intro">Reviewer for:</p>
+              <ul class="service-list">
+                <li>
+                  <span class="service-venue">IEEE Conference on Decision and Control (CDC)</span>
+                  <span class="service-year">2026</span>
+                </li>
+                <li>
+                  <span class="service-venue">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</span>
+                  <span class="service-year">2025-2026</span>
+                </li>
+                <li>
+                  <span class="service-venue">Automatica</span>
+                  <span class="service-year">2025</span>
+                </li>
+              </ul>
             </td>
           </tr>
             
@@ -284,7 +301,11 @@
 
         function showCitation(badge, count) {
           const value = badge.querySelector('.citation-value');
+          const label = badge.querySelector('.citation-label');
           value.textContent = count;
+          if (label) {
+            label.textContent = count === 1 ? 'citation' : 'citations';
+          }
           badge.hidden = false;
         }
 
