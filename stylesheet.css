@@ -102,6 +102,18 @@ h2 {
   font-weight: 700;
 }
 
+.citation-count {
+  color: #777;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.citation-value {
+  color: #666;
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .name {
   padding-top: 20px;
   margin: 0;

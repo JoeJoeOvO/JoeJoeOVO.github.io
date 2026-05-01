@@ -8,7 +8,7 @@
     <meta name="author" content="Junjun Xie">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css?v=20260502c">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css?v=20260502d">
     <script defer src="https://cn.vercount.one/js"></script>
     
   </head>
@@ -130,7 +130,8 @@
     <br>
     <!-- <a href="https://haian-jin.github.io/ZipMap/">project page</a> / -->
     <!-- <a href="https://arxiv.org/abs/2603.04385">arXiv</a> / -->
-    <a href="https://ieeexplore.ieee.org/document/11230627">Paper</a> /
+    <a href="https://ieeexplore.ieee.org/document/11230627">Paper</a>
+    <span class="citation-count" data-citation-doi="10.1109/TASE.2025.3629713" data-citation-title="CBF-Based Hierarchical Quadratic Programs With Guaranteed Feasibility for Safety-Critical Systems" hidden>Cited by <span class="citation-value"></span></span> /
     <a href="https://www.bilibili.com/video/BV1yk2MBUE13/">Video (Bilibili)</a> /
     <a href="https://github.com/JoeJoeOvO/Safety-first">Code</a>
     <p></p>
@@ -172,7 +173,8 @@
     <br>
     <em>Ocean Engineering</em>, 2025
     <br>
-    <a href="https://www.sciencedirect.com/science/article/pii/S0029801825018669">Paper</a> /
+    <a href="https://www.sciencedirect.com/science/article/pii/S0029801825018669">Paper</a>
+    <span class="citation-count" data-citation-doi="10.1016/j.oceaneng.2025.122182" data-citation-title="Flexible and Safe Navigation of Autonomous Underwater Vehicles with Input-Dynamics Move Blocking" hidden>Cited by <span class="citation-value"></span></span> /
     <a href="https://github.com/CLASS-Lab/BlueROV2Heavy-Gazebo-with-IDMB-CBF-DOB">Code</a>
     <p></p>
     <p>
@@ -214,7 +216,8 @@
     <br>
     <!-- <a href="https://haian-jin.github.io/ZipMap/">project page</a> / -->
     <!-- <a href="https://arxiv.org/abs/2603.04385">arXiv</a> / -->
-    <a href="https://ieeexplore.ieee.org/document/11127225/">Paper</a> /
+    <a href="https://ieeexplore.ieee.org/document/11127225/">Paper</a>
+    <span class="citation-count" data-citation-doi="10.1109/ICRA55743.2025.11127225" data-citation-title="Certificated Actor-Critic: Hierarchical Reinforcement Learning with Control Barrier Functions for Safe Navigation" hidden>Cited by <span class="citation-value"></span></span> /
     <a href="https://www.bilibili.com/video/BV1aTFLeWEki/">Video (Bilibili)</a> /
     <a href="https://github.com/JoeJoeOvO/Certificated-Actor-Critic">Code</a>
     <p></p>
@@ -267,5 +270,86 @@
         </td>
       </tr>
     </table>
+    <script>
+      (function () {
+        const badges = document.querySelectorAll('.citation-count');
+        const apiBase = 'https://api.semanticscholar.org/graph/v1';
+        const cacheMs = 12 * 60 * 60 * 1000;
+
+        function readCache(key) {
+          try {
+            const cached = JSON.parse(localStorage.getItem(key));
+            if (cached && Date.now() - cached.time < cacheMs) {
+              return cached.count;
+            }
+          } catch (error) {
+            return null;
+          }
+          return null;
+        }
+
+        function writeCache(key, count) {
+          try {
+            localStorage.setItem(key, JSON.stringify({ count: count, time: Date.now() }));
+          } catch (error) {
+          }
+        }
+
+        function showCitation(badge, count) {
+          const value = badge.querySelector('.citation-value');
+          value.textContent = count;
+          badge.hidden = false;
+        }
+
+        async function fetchJson(url) {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error('Citation request failed');
+          }
+          return response.json();
+        }
+
+        async function citationByDoi(doi) {
+          const paperId = encodeURIComponent('DOI:' + doi);
+          const paper = await fetchJson(apiBase + '/paper/' + paperId + '?fields=citationCount');
+          return Number.isFinite(paper.citationCount) ? paper.citationCount : null;
+        }
+
+        async function citationByTitle(title) {
+          const params = new URLSearchParams({
+            query: title,
+            fields: 'title,citationCount',
+            limit: '1'
+          });
+          const result = await fetchJson(apiBase + '/paper/search?' + params.toString());
+          const paper = result.data && result.data[0];
+          return paper && Number.isFinite(paper.citationCount) ? paper.citationCount : null;
+        }
+
+        badges.forEach(async function (badge) {
+          const doi = badge.dataset.citationDoi;
+          const title = badge.dataset.citationTitle;
+          const cacheKey = 'citation-count:' + (doi || title);
+          const cached = readCache(cacheKey);
+
+          if (cached !== null) {
+            showCitation(badge, cached);
+            return;
+          }
+
+          try {
+            let count = doi ? await citationByDoi(doi) : null;
+            if (count === null && title) {
+              count = await citationByTitle(title);
+            }
+            if (count !== null) {
+              writeCache(cacheKey, count);
+              showCitation(badge, count);
+            }
+          } catch (error) {
+          }
+        });
+      }());
+    </script>
   </body>
 </html>
