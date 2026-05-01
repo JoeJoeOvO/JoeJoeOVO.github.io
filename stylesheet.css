@@ -141,57 +141,20 @@ span.highlight {
     border-radius: 10px;
 }
 
-.visitor-stats {
-  width: 100%;
-  margin: 0 auto;
-  border: 0;
-  border-spacing: 0;
-  border-collapse: separate;
+.footer-meta {
+  margin: 0 0 4px;
+  color: #777;
+  font-size: small;
+  text-align: right;
 }
 
-.visitor-stats td {
-  padding: 16px;
-}
-
-.visitor-note {
-  margin: 8px 0 12px;
+.footer-value {
   color: #555;
-  line-height: 1.5;
-}
-
-.visitor-metrics {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.visitor-metric {
-  border: 1px solid #e5e5e5;
-  border-radius: 6px;
-  padding: 10px 8px;
-  text-align: center;
-  background: #fafafa;
-}
-
-.visitor-number,
-.visitor-label {
-  display: block;
-}
-
-.visitor-number {
-  margin-bottom: 4px;
-  color: #333;
-  font-size: 18px;
+  font-size: small;
   font-weight: 700;
 }
 
-.visitor-label {
-  color: #666;
-  font-size: 12px;
-}
-
-@media (max-width: 600px) {
-  .visitor-metrics {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.footer-divider {
+  margin: 0 6px;
+  color: #aaa;
 }
