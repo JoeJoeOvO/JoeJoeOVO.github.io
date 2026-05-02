@@ -54,13 +54,51 @@ h2 {
 }
 
 .profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
   margin: 12px 0 0;
-  text-align: center;
 }
 
-.profile-links a {
+.profile-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 24px;
+  padding: 4px 9px;
+  border: 1px solid #dde5ec;
+  border-radius: 4px;
+  background: #fbfcfd;
+  color: var(--color-blue);
   font-size: 13px;
   font-weight: 600;
+  line-height: 1.2;
+}
+
+.profile-button:hover,
+.profile-button:focus {
+  border-color: var(--color-orange);
+  color: var(--color-orange);
+}
+
+.profile-icon {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+  fill: currentColor;
+}
+
+.email-button {
+  color: #4e7498;
+}
+
+.scholar-button {
+  color: #3f72b5;
+}
+
+.github-button {
+  color: #3d444b;
 }
 
 .section-heading {
@@ -112,6 +150,18 @@ h2 {
   font-size: 13px;
 }
 
+.publication-image {
+  padding: 22px 16px 16px;
+  width: 20%;
+  vertical-align: top;
+}
+
+.publication-content {
+  padding: 20px;
+  width: 75%;
+  vertical-align: top;
+}
+
 .paper-links {
   display: inline-flex;
   flex-wrap: wrap;
@@ -153,8 +203,40 @@ h2 {
 }
 
 .link-icon {
-  font-size: 11px;
-  line-height: 1;
+  display: none;
+}
+
+.paper-button-label::before,
+.resource-label::before {
+  content: "";
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+.paper-button-label::before {
+  width: 8px;
+  height: 10px;
+  border: 1.4px solid currentColor;
+  border-radius: 1px;
+  box-sizing: border-box;
+  opacity: .85;
+}
+
+.video-link .resource-label::before {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid currentColor;
+}
+
+.code-link .resource-label::before {
+  content: "</>";
+  width: auto;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0;
+  opacity: .9;
 }
 
 .video-link {
@@ -308,6 +390,7 @@ h2 {
   width: 160px;
   height: 160px;
   position: relative;
+  margin-top: 2px;
 }
 
 .two {
