@@ -202,41 +202,30 @@ h2 {
   line-height: 1.2;
 }
 
-.link-icon {
-  display: none;
-}
-
 .paper-button-label::before,
 .resource-label::before {
   content: "";
   display: inline-block;
   flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  background: currentColor;
+  opacity: .86;
 }
 
 .paper-button-label::before {
-  width: 8px;
-  height: 10px;
-  border: 1.4px solid currentColor;
-  border-radius: 1px;
-  box-sizing: border-box;
-  opacity: .85;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h8l4 4v16H6V2zm7 1.8V7h3.2L13 3.8zM8 11h8v1.7H8V11zm0 4h8v1.7H8V15z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h8l4 4v16H6V2zm7 1.8V7h3.2L13 3.8zM8 11h8v1.7H8V11zm0 4h8v1.7H8V15z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 .video-link .resource-label::before {
-  width: 0;
-  height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 8px solid currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7L8 5z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7L8 5z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 .code-link .resource-label::before {
-  content: "</>";
-  width: auto;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0;
-  opacity: .9;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4zM13 4l-3.7 16h1.8L14.8 4H13z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4zM13 4l-3.7 16h1.8L14.8 4H13z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 .video-link {
