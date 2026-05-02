@@ -1,0 +1,30 @@
+name: Build CV PDF
+
+on:
+  push:
+    paths:
+      - "cv_template.tex"
+      - "publications.bib"
+      - ".github/workflows/build-cv.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk biber texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra
+
+      - name: Compile CV
+        run: latexmk -pdf -interaction=nonstopmode -file-line-error -halt-on-error cv_template.tex
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdf
+          path: cv_template.pdf

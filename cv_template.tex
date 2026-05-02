@@ -1,0 +1,207 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[letterpaper,left=0.65in,right=0.65in,top=0.55in,bottom=0.55in]{geometry}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{mathptmx}
+\usepackage{csquotes}
+\usepackage{etoolbox}
+\usepackage[
+  backend=biber,
+  style=numeric,
+  sorting=none,
+  maxnames=99,
+  giveninits=false,
+  doi=false,
+  isbn=false,
+  url=false
+]{biblatex}
+
+\addbibresource{publications.bib}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=black,
+  linkcolor=black
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\renewcommand{\baselinestretch}{1.02}
+
+\newcommand{\boldmyname}[1]{%
+  \ifboolexpr{
+    test {\ifdefstring{\namepartfamily}{Xie}}
+    and
+    test {\ifdefstring{\namepartgiven}{Junjun}}
+  }
+    {\textbf{#1}}
+    {#1}%
+}
+\renewcommand*{\mkbibnamegiven}[1]{\boldmyname{#1}}
+\renewcommand*{\mkbibnamefamily}[1]{\boldmyname{#1}}
+\DeclareNameAlias{sortname}{given-family}
+\DeclareNameAlias{author}{given-family}
+
+\defbibenvironment{bibliography}
+  {\begin{cvitems}}
+  {\end{cvitems}}
+  {\item}
+
+\titleformat{\section}
+  {\large\bfseries\scshape}
+  {}
+  {0pt}
+  {}
+  [\vspace{-2pt}\titlerule]
+\titlespacing*{\section}{0pt}{9pt}{6pt}
+
+\newcommand{\cvname}[1]{
+  \begin{center}
+    {\LARGE\bfseries #1}
+  \end{center}
+  \vspace{-8pt}
+}
+
+\newcommand{\cvcontact}[1]{
+  \begin{center}
+    \small #1
+  \end{center}
+  \vspace{2pt}
+}
+
+\newcommand{\entry}[4]{
+  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    \textbf{\MakeUppercase{#1}} & #2 \\
+    #3 & #4 \\
+  \end{tabular*}
+  \vspace{2pt}
+}
+
+\newcommand{\entryone}[2]{
+  \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+    \textbf{\MakeUppercase{#1}} & #2 \\
+  \end{tabular*}
+  \vspace{2pt}
+}
+
+\newcommand{\cvline}[1]{
+  #1\par
+  \vspace{2pt}
+}
+
+\newenvironment{cvitems}{
+  \begin{itemize}[
+    leftmargin=1.55em,
+    itemsep=1pt,
+    topsep=2pt,
+    parsep=0pt,
+    partopsep=0pt
+  ]
+}{
+  \end{itemize}
+}
+
+\newcommand{\award}[2]{
+  \item
+  \begin{tabular*}{\dimexpr\textwidth-1.55em\relax}{@{}l@{\extracolsep{\fill}}r@{}}
+    #1 & #2
+  \end{tabular*}
+}
+
+\begin{document}
+
+\cvname{Junjun Xie}
+\cvcontact{
+  Email: \href{mailto:xiejunjun.ovo@gmail.com}{xiejunjun.ovo@gmail.com}
+  \quad
+  Google Scholar: \href{https://scholar.google.com/citations?user=iD5b5lUAAAAJ\&hl=en}{Junjun Xie}
+  \quad
+  GitHub: \href{https://github.com/JoeJoeOvO/}{JoeJoeOvO}
+}
+
+\section{Education}
+
+\entry
+  {Harbin Institute of Technology, Shenzhen}
+  {Shenzhen, China}
+  {Ph.D. Student}
+  {2023 -- Present}
+
+\entry
+  {Harbin Institute of Technology, Shenzhen}
+  {Shenzhen, China}
+  {Bachelor's Degree}
+  {2023}
+
+\section{Research Interests}
+
+\cvline{\textbf{Primary Research Area}}
+\begin{cvitems}
+  \item Constrained optimization and learning for robot safety.
+  \item Safety-critical control, robotics, control theory, and machine learning.
+\end{cvitems}
+
+\cvline{\textbf{Specific Topics}}
+\begin{cvitems}
+  \item Control barrier functions and safety filters.
+  \item Safe reinforcement learning and hierarchical control.
+  \item Safe navigation for robotic and autonomous systems.
+\end{cvitems}
+
+\section{Research Experience}
+
+\entry
+  {Harbin Institute of Technology, Shenzhen}
+  {Shenzhen, China}
+  {Ph.D. Student}
+  {2023 -- Present}
+\begin{cvitems}
+  \item Conduct research on constrained optimization and learning for robot safety.
+  \item Work on safety-critical control, model-free safety filters, and safe navigation.
+\end{cvitems}
+
+\entry
+  {Harbin Institute of Technology, Shenzhen}
+  {Shenzhen, China}
+  {Undergraduate Student}
+  {-- 2023}
+\begin{cvitems}
+  \item Received Bachelor's degree in 2023.
+  \item Research experience and project details to be added.
+\end{cvitems}
+
+\section{Research Skills}
+
+\begin{cvitems}
+  \item \textbf{Research Areas:} robotics, control theory, machine learning, constrained optimization.
+  \item \textbf{Methods:} control barrier functions, quadratic programming, reinforcement learning, safety filters.
+  \item \textbf{Programming:} to be added.
+  \item \textbf{Tools and Platforms:} to be added.
+\end{cvitems}
+
+\section{Publications}
+
+\nocite{*}
+\printbibliography[heading=none]
+
+\section{Academic Service}
+
+\cvline{Reviewer for:}
+\begin{cvitems}
+  \item IEEE Conference on Decision and Control (CDC)
+  \item IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
+  \item Automatica
+\end{cvitems}
+
+\section{Awards \& Honors}
+
+\begin{cvitems}
+  \item To be added.
+\end{cvitems}
+
+\end{document}
