@@ -1,11 +1,11 @@
 {
-  "updated_utc": "2026-05-01T21:09:51Z",
+  "updated_utc": "2026-05-04T21:32:53Z",
   "metrics": {
     "transsafe-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 253,
-      "display": "253 views",
+      "count": 254,
+      "display": "254 views",
       "bvid": "BV1DcPvzVEoT"
     },
     "transsafe-code": {
@@ -18,7 +18,7 @@
     "safetyfirst-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 1825,
+      "count": 1826,
       "display": "1.8k views",
       "bvid": "BV1yk2MBUE13"
     },
@@ -32,8 +32,8 @@
     "idmb-code": {
       "kind": "github",
       "metric": "stars",
-      "count": 5,
-      "display": "5 stars",
+      "count": 6,
+      "display": "6 stars",
       "repo": "CLASS-Lab/BlueROV2Heavy-Gazebo-with-IDMB-CBF-DOB"
     },
     "cac-video": {
