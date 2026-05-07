@@ -1,11 +1,11 @@
 {
-  "updated_utc": "2026-05-04T21:32:53Z",
+  "updated_utc": "2026-05-07T21:16:37Z",
   "metrics": {
     "transsafe-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 254,
-      "display": "254 views",
+      "count": 263,
+      "display": "263 views",
       "bvid": "BV1DcPvzVEoT"
     },
     "transsafe-code": {
@@ -18,15 +18,15 @@
     "safetyfirst-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 1826,
+      "count": 1834,
       "display": "1.8k views",
       "bvid": "BV1yk2MBUE13"
     },
     "safetyfirst-code": {
       "kind": "github",
       "metric": "stars",
-      "count": 3,
-      "display": "3 stars",
+      "count": 4,
+      "display": "4 stars",
       "repo": "JoeJoeOvO/Safety-first"
     },
     "idmb-code": {
@@ -39,7 +39,7 @@
     "cac-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 2415,
+      "count": 2416,
       "display": "2.4k views",
       "bvid": "BV1aTFLeWEki"
     },
