@@ -1,6 +1,6 @@
 {
   "source": "https://scholar.google.com/citations?user=iD5b5lUAAAAJ&hl=en",
-  "updated_utc": "2026-05-01T21:09:48Z",
+  "updated_utc": "2026-05-10T14:59:19Z",
   "citations": {
     "safetyfirst": {
       "title": "CBF-Based Hierarchical Quadratic Programs With Guaranteed Feasibility for Safety-Critical Systems",
@@ -15,7 +15,7 @@
     "cac": {
       "title": "Certificated Actor-Critic: Hierarchical Reinforcement Learning with Control Barrier Functions for Safe Navigation",
       "scholar_title": "Certificated Actor-Critic: Hierarchical Reinforcement Learning with Control Barrier Functions for Safe Navigation",
-      "count": 5
+      "count": 6
     }
   }
 }
