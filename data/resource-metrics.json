@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-05-13T21:47:14Z",
+  "updated_utc": "2026-05-16T21:06:21Z",
   "metrics": {
     "transsafe-video": {
       "kind": "bilibili",
@@ -18,7 +18,7 @@
     "safetyfirst-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 1842,
+      "count": 1846,
       "display": "1.8k views",
       "bvid": "BV1yk2MBUE13"
     },
@@ -39,7 +39,7 @@
     "cac-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 2425,
+      "count": 2426,
       "display": "2.4k views",
       "bvid": "BV1aTFLeWEki"
     },
