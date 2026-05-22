@@ -21,7 +21,13 @@ jobs:
           python-version: "3.x"
 
       - name: Update citation cache
-        run: python scripts/update_scholar_citations.py
+        id: update_citations
+        continue-on-error: true
+        run: python scripts/update_scholar_citations.py --strict
+        env:
+          SCHOLAR_COOKIE: ${{ secrets.SCHOLAR_COOKIE }}
+          SCHOLAR_RETRIES: "6"
+          SCHOLAR_RETRY_DELAY: "10"
 
       - name: Update resource metric cache
         run: python scripts/update_resource_metrics.py
@@ -39,3 +45,9 @@ jobs:
           git add data/scholar-citations.json data/resource-metrics.json
           git commit -m "Update homepage metric caches"
           git push
+
+      - name: Fail if Scholar update failed
+        if: steps.update_citations.outcome == 'failure'
+        run: |
+          echo "::error::Google Scholar citation update failed; existing citation cache was kept."
+          exit 1
