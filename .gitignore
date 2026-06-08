@@ -10,3 +10,4 @@
 *.synctex(busy)
 *.synctex.gz
 *.toc
+logs/
