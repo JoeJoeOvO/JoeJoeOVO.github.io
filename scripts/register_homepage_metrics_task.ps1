@@ -24,7 +24,7 @@ if ($UseBrowser) {
 
 $Action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument ($ArgumentParts -join " ")
 $Trigger = New-ScheduledTaskTrigger -Daily -DaysInterval $Days -At $Time
-$Principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive -RunLevel LeastPrivilege
+$Principal = New-ScheduledTaskPrincipal -UserId $env:USERNAME -LogonType Interactive -RunLevel Limited
 
 Register-ScheduledTask -TaskName $TaskName -Action $Action -Trigger $Trigger -Principal $Principal -Force | Out-Null
 Write-Host "Registered scheduled task '$TaskName' every $Days day(s) at $Time."
