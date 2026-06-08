@@ -33,6 +33,7 @@ SCHOLAR_URLS = [
     SCHOLAR_PROFILE + "&cstart=0&pagesize=100&view_op=list_works",
     SCHOLAR_PROFILE + "&cstart=0&pagesize=100",
 ]
+SCHOLAR_HOSTS = [".google.com", "scholar.google.com"]
 
 PAPERS = [
     {
@@ -159,6 +160,100 @@ def has_bot_check(html: str) -> bool:
     return any(marker.lower() in html_lower for marker in BOT_CHECK_MARKERS)
 
 
+def cookie_header_to_playwright_cookies(cookie_header: str) -> List[Dict[str, object]]:
+    cookies: List[Dict[str, object]] = []
+    for raw_cookie in cookie_header.split(";"):
+        raw_cookie = raw_cookie.strip()
+        if not raw_cookie or "=" not in raw_cookie:
+            continue
+        name, value = raw_cookie.split("=", 1)
+        if not name:
+            continue
+        for domain in SCHOLAR_HOSTS:
+            cookies.append({
+                "name": name,
+                "value": value,
+                "domain": domain,
+                "path": "/",
+                "secure": True,
+                "httpOnly": False,
+            })
+    return cookies
+
+
+def fetch_profile_rows_with_browser(retries: int, retry_delay: float) -> tuple[List[Dict[str, object]], str]:
+    try:
+        from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+        from playwright.sync_api import sync_playwright
+    except ImportError as error:
+        raise RuntimeError("Playwright is not installed.") from error
+
+    cookie_header = os.environ.get("SCHOLAR_COOKIE", "").strip()
+    if not cookie_header:
+        raise RuntimeError("SCHOLAR_COOKIE is not configured for browser fetch.")
+
+    errors: List[str] = []
+    print("Using browser-based Google Scholar fetch with SCHOLAR_COOKIE configured.")
+
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(
+            headless=True,
+            args=[
+                "--disable-blink-features=AutomationControlled",
+                "--no-sandbox",
+            ],
+        )
+        try:
+            for attempt in range(1, retries + 1):
+                user_agent = USER_AGENTS[(attempt - 1) % len(USER_AGENTS)]
+                context = browser.new_context(
+                    locale="en-US",
+                    timezone_id="Asia/Shanghai",
+                    user_agent=user_agent,
+                    viewport={"width": 1365, "height": 900},
+                    extra_http_headers={
+                        "Accept-Language": "en-US,en;q=0.9",
+                    },
+                )
+                context.add_cookies(cookie_header_to_playwright_cookies(cookie_header))
+                page = context.new_page()
+
+                urls = SCHOLAR_URLS[:]
+                random.shuffle(urls)
+                for url in urls:
+                    try:
+                        print(f"Scholar browser attempt {attempt}/{retries}: {url}")
+                        response = page.goto(url, wait_until="domcontentloaded", timeout=45_000)
+                        status = response.status if response else "no-response"
+                        page.wait_for_timeout(2_000)
+                        html = page.content()
+                        if status == 403:
+                            raise RuntimeError("Google Scholar returned HTTP 403.")
+                        if has_bot_check(html):
+                            raise RuntimeError("Google Scholar returned a bot-check page.")
+                        rows = parse_profile(html)
+                        if not rows:
+                            raise RuntimeError("No publication rows were parsed from the Scholar profile.")
+                        print(f"Parsed {len(rows)} Scholar rows from {url}.")
+                        return rows, url
+                    except (PlaywrightTimeoutError, RuntimeError) as error:
+                        message = f"{url}: {error}"
+                        errors.append(message)
+                        print(f"Scholar browser attempt failed: {message}", file=sys.stderr)
+
+                page.close()
+                context.close()
+
+                if attempt < retries:
+                    sleep_seconds = retry_delay * attempt + random.uniform(0, 2)
+                    print(f"Retrying browser Scholar after {sleep_seconds:.1f}s...")
+                    time.sleep(sleep_seconds)
+        finally:
+            browser.close()
+
+    raise RuntimeError("; ".join(errors[-6:]))
+
+
 def fetch_profile_html(url: str, user_agent: str) -> str:
     request = Request(
         url,
@@ -175,6 +270,12 @@ def parse_profile(html: str) -> List[Dict[str, object]]:
 
 
 def fetch_profile_rows(retries: int, retry_delay: float) -> tuple[List[Dict[str, object]], str]:
+    if os.environ.get("SCHOLAR_BROWSER_FETCH") == "1":
+        try:
+            return fetch_profile_rows_with_browser(retries, retry_delay)
+        except RuntimeError as error:
+            print(f"Browser Scholar fetch failed; falling back to direct HTTP fetch: {error}", file=sys.stderr)
+
     errors: List[str] = []
     for attempt in range(1, retries + 1):
         urls = SCHOLAR_URLS[:]
