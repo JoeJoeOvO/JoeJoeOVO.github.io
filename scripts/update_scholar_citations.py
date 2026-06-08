@@ -21,6 +21,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional
 from urllib.error import HTTPError, URLError
+from urllib.request import ProxyHandler, build_opener
 from urllib.request import Request, urlopen
 
 
@@ -155,6 +156,11 @@ def scholar_headers(user_agent: str) -> Dict[str, str]:
     return headers
 
 
+def scholar_proxy() -> Optional[str]:
+    proxy = os.environ.get("SCHOLAR_PROXY", "").strip()
+    return proxy or None
+
+
 def has_bot_check(html: str) -> bool:
     html_lower = html.lower()
     return any(marker.lower() in html_lower for marker in BOT_CHECK_MARKERS)
@@ -194,15 +200,20 @@ def fetch_profile_rows_with_browser(retries: int, retry_delay: float) -> tuple[L
 
     errors: List[str] = []
     print("Using browser-based Google Scholar fetch with SCHOLAR_COOKIE configured.")
+    proxy = scholar_proxy()
+    launch_options: Dict[str, object] = {
+        "headless": True,
+        "args": [
+            "--disable-blink-features=AutomationControlled",
+            "--no-sandbox",
+        ],
+    }
+    if proxy:
+        launch_options["proxy"] = {"server": proxy}
+        print("Using SCHOLAR_PROXY for browser-based Scholar fetch.")
 
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(
-            headless=True,
-            args=[
-                "--disable-blink-features=AutomationControlled",
-                "--no-sandbox",
-            ],
-        )
+        browser = playwright.chromium.launch(**launch_options)
         try:
             for attempt in range(1, retries + 1):
                 user_agent = USER_AGENTS[(attempt - 1) % len(USER_AGENTS)]
@@ -259,7 +270,10 @@ def fetch_profile_html(url: str, user_agent: str) -> str:
         url,
         headers=scholar_headers(user_agent),
     )
-    with urlopen(request, timeout=30) as response:
+    proxy = scholar_proxy()
+    opener = build_opener(ProxyHandler({"http": proxy, "https": proxy})) if proxy else None
+    open_url = opener.open if opener else urlopen
+    with open_url(request, timeout=30) as response:
         return response.read().decode("utf-8", errors="replace")
 
 
@@ -274,7 +288,10 @@ def fetch_profile_rows(retries: int, retry_delay: float) -> tuple[List[Dict[str,
         try:
             return fetch_profile_rows_with_browser(retries, retry_delay)
         except RuntimeError as error:
-            print(f"Browser Scholar fetch failed; falling back to direct HTTP fetch: {error}", file=sys.stderr)
+            if scholar_proxy():
+                print(f"Browser Scholar fetch failed; falling back to direct HTTP fetch with SCHOLAR_PROXY: {error}", file=sys.stderr)
+            else:
+                raise RuntimeError(f"Browser Scholar fetch failed and no SCHOLAR_PROXY is configured: {error}") from error
 
     errors: List[str] = []
     for attempt in range(1, retries + 1):

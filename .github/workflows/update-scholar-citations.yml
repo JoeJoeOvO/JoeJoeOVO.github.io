@@ -33,8 +33,9 @@ jobs:
         env:
           SCHOLAR_BROWSER_FETCH: "1"
           SCHOLAR_COOKIE: ${{ secrets.SCHOLAR_COOKIE }}
-          SCHOLAR_RETRIES: "6"
-          SCHOLAR_RETRY_DELAY: "10"
+          SCHOLAR_PROXY: ${{ secrets.SCHOLAR_PROXY }}
+          SCHOLAR_RETRIES: "3"
+          SCHOLAR_RETRY_DELAY: "5"
 
       - name: Update resource metric cache
         run: python scripts/update_resource_metrics.py
