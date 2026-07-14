@@ -1,7 +1,7 @@
 {
   "source": "https://scholar.google.com/citations?user=iD5b5lUAAAAJ&hl=en",
-  "source_url": "https://scholar.google.com/citations?user=iD5b5lUAAAAJ&hl=en&cstart=0&pagesize=100&view_op=list_works&sortby=pubdate",
-  "updated_utc": "2026-07-11T12:00:09Z",
+  "source_url": "https://scholar.google.com/citations?user=iD5b5lUAAAAJ&hl=en&cstart=0&pagesize=100",
+  "updated_utc": "2026-07-14T12:00:08Z",
   "citations": {
     "safetyfirst": {
       "title": "CBF-Based Hierarchical Quadratic Programs With Guaranteed Feasibility for Safety-Critical Systems",
