@@ -143,14 +143,18 @@ h2 {
   padding-left: 11px;
   border-left: 2px solid #d7e2eb;
   color: #47515a;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
+}
+
+.news-entry + .news-entry {
+  margin-top: 9px;
 }
 
 .news-date {
   margin-right: 7px;
   color: #6d7882;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
