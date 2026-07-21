@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "updated_utc": "2026-07-19T21:10:43Z",
-=======
-  "updated_utc": "2026-07-17T12:00:30Z",
->>>>>>> f37a58f (Update homepage metric caches)
   "metrics": {
     "transsafe-video": {
       "kind": "bilibili",
