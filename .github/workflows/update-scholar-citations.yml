@@ -54,8 +54,6 @@ jobs:
           git commit -m "Update homepage metric caches"
           git push
 
-      - name: Fail if Scholar update failed
+      - name: Report Scholar update failure
         if: steps.update_citations.outcome == 'failure'
-        run: |
-          echo "::error::Google Scholar citation update failed; existing citation cache was kept."
-          exit 1
+        run: echo "::warning::Google Scholar citation update failed; existing citation cache was kept."
