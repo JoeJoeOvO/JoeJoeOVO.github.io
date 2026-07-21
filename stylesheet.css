@@ -127,6 +127,49 @@ h2 {
   font-size: 13px;
 }
 
+.news-list {
+  width: 100%;
+  border: 0;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+.news-list td {
+  padding: 0 16px 16px;
+}
+
+.news-entry {
+  margin: 0;
+  padding-left: 11px;
+  border-left: 2px solid #d7e2eb;
+  color: #47515a;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.news-date {
+  margin-right: 7px;
+  color: #6d7882;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.news-paper {
+  color: #355f83;
+  font-weight: 600;
+}
+
+.news-venue {
+  color: #a8543e;
+  font-weight: 700;
+}
+
+.news-venue:hover,
+.news-venue:focus {
+  color: var(--color-orange);
+}
+
 .papertitle {
   display: inline-block;
   margin-bottom: 5px;
