@@ -336,7 +336,7 @@
                   Thanks <a href="https://jonbarron.info/"> Jonathan T. Barron</a> for the <a href="https://github.com/jonbarron/jonbarron_website">website template</a>.
                 </p>
                 <p class="footer-meta">
-                  Visitors: <span class="footer-value" id="vercount_value_site_uv">-</span>
+                  Visitors: <span class="footer-value" id="vercount_value_site_uv" data-visitor-baseline="18" data-visitor-total="18">18</span>
                   <span class="footer-divider">/</span>
                   Last updated: <span class="footer-value">July 22, 2026</span>
                 </p>
@@ -350,6 +350,29 @@
       (function () {
         const badges = document.querySelectorAll('.citation-count[data-citation-key]');
         const metrics = document.querySelectorAll('.resource-metric[data-metric-key]');
+        const visitorCounter = document.getElementById('vercount_value_site_uv');
+
+        if (visitorCounter) {
+          const visitorBaseline = Number(visitorCounter.dataset.visitorBaseline);
+
+          function showVisitorTotal() {
+            const currentText = visitorCounter.textContent.trim();
+            if (!/^\d+$/.test(currentText) || currentText === visitorCounter.dataset.visitorTotal) {
+              return;
+            }
+
+            const total = visitorBaseline + Number(currentText);
+            visitorCounter.dataset.visitorTotal = String(total);
+            visitorCounter.textContent = String(total);
+          }
+
+          new MutationObserver(showVisitorTotal).observe(visitorCounter, {
+            childList: true,
+            characterData: true,
+            subtree: true
+          });
+          showVisitorTotal();
+        }
 
         function showCitation(badge, count) {
           const value = badge.querySelector('.citation-value');
