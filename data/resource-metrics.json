@@ -1,11 +1,11 @@
 {
-  "updated_utc": "2026-07-19T21:10:43Z",
+  "updated_utc": "2026-07-22T21:31:02Z",
   "metrics": {
     "transsafe-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 313,
-      "display": "313 views",
+      "count": 314,
+      "display": "314 views",
       "bvid": "BV1DcPvzVEoT"
     },
     "transsafe-code": {
@@ -18,7 +18,7 @@
     "safetyfirst-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 1928,
+      "count": 1932,
       "display": "1.9k views",
       "bvid": "BV1yk2MBUE13"
     },
@@ -39,7 +39,7 @@
     "cac-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 2462,
+      "count": 2465,
       "display": "2.5k views",
       "bvid": "BV1aTFLeWEki"
     },
