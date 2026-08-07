@@ -1,11 +1,11 @@
 {
-  "updated_utc": "2026-08-04T21:38:59Z",
+  "updated_utc": "2026-08-07T21:02:05Z",
   "metrics": {
     "transsafe-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 318,
-      "display": "318 views",
+      "count": 320,
+      "display": "320 views",
       "bvid": "BV1DcPvzVEoT"
     },
     "transsafe-code": {
@@ -18,7 +18,7 @@
     "safetyfirst-video": {
       "kind": "bilibili",
       "metric": "views",
-      "count": 1937,
+      "count": 1940,
       "display": "1.9k views",
       "bvid": "BV1yk2MBUE13"
     },
