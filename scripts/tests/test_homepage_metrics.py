@@ -149,6 +149,8 @@ class PublishingTests(unittest.TestCase):
         self.assertEqual(self.state(), before)
         self.assertEqual(self.command(self.remote, "show", "master:index.html"), "original homepage")
         self.assertEqual(self.remote_cache(), cache(NEW))
+        blob = subprocess.check_output(["git", "-C", str(self.remote), "show", f"master:{RESOURCE_PATH}"])
+        self.assertNotIn(b"\r", blob)
 
     def test_publish_works_during_unrelated_unresolved_user_merge(self):
         self.command(self.worker, "checkout", "-b", "user-work")

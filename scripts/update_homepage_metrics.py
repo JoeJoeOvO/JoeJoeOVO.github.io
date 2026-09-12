@@ -70,12 +70,13 @@ class Git:
         process_env.update(env or {})
         result = subprocess.run(
             ["git", "-C", str(self.repo), *self.options, *args],
-            input=input, capture_output=True, text=True, encoding="utf-8",
-            errors="replace", env=process_env, timeout=120,
+            input=input.encode("utf-8") if input is not None else None,
+            capture_output=True, env=process_env, timeout=120,
         )
         if result.returncode:
-            raise RuntimeError(f"git {args[0]} failed: {result.stderr.strip()}")
-        return result.stdout.strip()
+            error = result.stderr.decode("utf-8", errors="replace").strip()
+            raise RuntimeError(f"git {args[0]} failed: {error}")
+        return result.stdout.decode("utf-8", errors="replace").strip()
 
     def fetch(self):
         # A private ref avoids races with the user's fetch/pull and FETCH_HEAD.
