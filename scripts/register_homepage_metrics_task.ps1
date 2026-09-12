@@ -11,6 +11,7 @@ $ErrorActionPreference = "Stop"
 $Updater = Resolve-Path (Join-Path $PSScriptRoot "update_homepage_metrics_local.ps1")
 $ArgumentParts = @(
   "-NoProfile",
+  "-WindowStyle", "Hidden",
   "-ExecutionPolicy", "Bypass",
   "-File", "`"$Updater`""
 )
@@ -29,8 +30,12 @@ $Settings = New-ScheduledTaskSettingsSet `
   -AllowStartIfOnBatteries `
   -DontStopIfGoingOnBatteries `
   -StartWhenAvailable `
+  -RunOnlyIfNetworkAvailable `
+  -RestartCount 3 `
+  -RestartInterval (New-TimeSpan -Minutes 30) `
   -MultipleInstances IgnoreNew `
   -ExecutionTimeLimit (New-TimeSpan -Hours 1)
 
 Register-ScheduledTask -TaskName $TaskName -Action $Action -Trigger $Trigger -Principal $Principal -Settings $Settings -Force | Out-Null
 Write-Host "Registered scheduled task '$TaskName' every $Days day(s) at $Time."
+Write-Host "Failed runs retry up to 3 times, 30 minutes apart. Logs are written to the repository's logs folder."

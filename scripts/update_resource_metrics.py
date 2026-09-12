@@ -3,9 +3,11 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, Optional
@@ -58,8 +60,14 @@ RESOURCES = {
 
 def fetch_json(url: str, headers: Optional[Dict[str, str]] = None) -> Dict[str, object]:
     request = Request(url, headers=headers or {})
-    with urlopen(request, timeout=30) as response:
-        return json.loads(response.read().decode("utf-8", errors="replace"))
+    for attempt in range(3):
+        try:
+            with urlopen(request, timeout=30) as response:
+                return json.loads(response.read().decode("utf-8", errors="replace"))
+        except (URLError, TimeoutError):
+            if attempt == 2:
+                raise
+            time.sleep(2 * (attempt + 1))
 
 
 def load_existing(path: Path) -> Dict[str, object]:
@@ -127,7 +135,7 @@ def update_metrics(existing: Dict[str, object]) -> Dict[str, object]:
     if not isinstance(existing_metrics, dict):
         existing_metrics = {}
 
-    metrics: Dict[str, Dict[str, object]] = {}
+    metrics = dict(existing_metrics)
     updated_any = False
 
     for key, resource in RESOURCES.items():
@@ -151,31 +159,42 @@ def update_metrics(existing: Dict[str, object]) -> Dict[str, object]:
             "metric": resource["metric"],
             "count": count,
             "display": format_metric(count, str(resource["metric"])),
+            "updated_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         }
         if resource["kind"] == "github":
             metrics[key]["repo"] = resource["repo"]
         if resource["kind"] == "bilibili":
             metrics[key]["bvid"] = resource["bvid"]
+        print(f"Fetched {key}: {format_metric(count, str(resource['metric']))}")
 
     if not updated_any and not metrics:
         raise RuntimeError("No resource metrics were updated or preserved.")
+    if not updated_any:
+        return existing
 
     return {
+        **existing,
         "updated_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "metrics": metrics,
     }
 
 
 def main() -> int:
-    existing = load_existing(OUTPUT_PATH)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, default=OUTPUT_PATH)
+    args = parser.parse_args()
+    existing = load_existing(args.output)
     try:
         updated = update_metrics(existing)
     except RuntimeError as error:
         print(f"Resource metrics update skipped: {error}", file=sys.stderr)
-        return 0
+        return 1
 
-    write_json(OUTPUT_PATH, updated)
-    print(f"Updated {OUTPUT_PATH} with {len(updated['metrics'])} resource metrics.")
+    if updated == existing:
+        print("No resource metrics fetched; existing counts and timestamps were kept.")
+        return 1
+    write_json(args.output, updated)
+    print(f"Updated {args.output} with {len(updated['metrics'])} resource metrics.")
     return 0
 
 

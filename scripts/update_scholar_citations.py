@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """Update cached citation counts from a Google Scholar profile.
 
-The homepage reads data/scholar-citations.json. This script is intended to run
-from GitHub Actions on a low-frequency schedule so visitors never query Google
-Scholar directly.
+The homepage reads data/scholar-citations.json. This script runs locally on a
+low-frequency schedule so visitors never query Google Scholar directly.
 """
 
 from __future__ import annotations
@@ -360,8 +359,9 @@ def build_citation_data(rows: List[Dict[str, object]], existing: Dict[str, objec
     if not isinstance(existing_citations, dict):
         existing_citations = {}
 
-    citations: Dict[str, Dict[str, object]] = {}
+    citations = dict(existing_citations)
     matched_any = False
+    updated_utc = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     for paper in PAPERS:
         key = paper["key"]
         title = paper["title"]
@@ -377,6 +377,7 @@ def build_citation_data(rows: List[Dict[str, object]], existing: Dict[str, objec
             "title": title,
             "scholar_title": row["title"],
             "count": int(row["count"]),
+            "updated_utc": updated_utc,
         }
 
     if not matched_any:
@@ -385,7 +386,7 @@ def build_citation_data(rows: List[Dict[str, object]], existing: Dict[str, objec
     return {
         "source": SCHOLAR_PROFILE,
         "source_url": source_url,
-        "updated_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "updated_utc": updated_utc,
         "citations": citations,
     }
 
