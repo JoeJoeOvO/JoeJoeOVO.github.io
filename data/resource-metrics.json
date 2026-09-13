@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-09-12T12:00:10Z",
+  "updated_utc": "2026-09-13T22:27:40Z",
   "metrics": {
     "transsafe-video": {
       "kind": "bilibili",
@@ -14,7 +14,7 @@
       "metric": "stars",
       "count": 0,
       "display": "0 stars",
-      "updated_utc": "2026-09-12T12:00:08Z",
+      "updated_utc": "2026-09-13T22:27:25Z",
       "repo": "JoeJoeOvO/Transfer-Your-Safety"
     },
     "safetyfirst-video": {
@@ -30,7 +30,7 @@
       "metric": "stars",
       "count": 4,
       "display": "4 stars",
-      "updated_utc": "2026-09-12T12:00:09Z",
+      "updated_utc": "2026-09-13T22:27:32Z",
       "repo": "JoeJoeOvO/Safety-first"
     },
     "idmb-code": {
@@ -38,7 +38,7 @@
       "metric": "stars",
       "count": 6,
       "display": "6 stars",
-      "updated_utc": "2026-09-12T12:00:09Z",
+      "updated_utc": "2026-09-13T22:27:33Z",
       "repo": "CLASS-Lab/BlueROV2Heavy-Gazebo-with-IDMB-CBF-DOB"
     },
     "cac-video": {
@@ -54,7 +54,7 @@
       "metric": "stars",
       "count": 1,
       "display": "1 star",
-      "updated_utc": "2026-09-12T12:00:10Z",
+      "updated_utc": "2026-09-13T22:27:40Z",
       "repo": "JoeJoeOvO/Certificated-Actor-Critic"
     }
   }
