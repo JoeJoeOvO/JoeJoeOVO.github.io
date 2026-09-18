@@ -1,25 +1,25 @@
 {
   "source": "https://scholar.google.com/citations?user=iD5b5lUAAAAJ&hl=en",
   "source_url": "https://scholar.google.com/citations?user=iD5b5lUAAAAJ&hl=en&cstart=0&pagesize=100&view_op=list_works",
-  "updated_utc": "2026-09-15T12:00:09Z",
+  "updated_utc": "2026-09-18T12:00:10Z",
   "citations": {
     "safetyfirst": {
       "title": "CBF-Based Hierarchical Quadratic Programs With Guaranteed Feasibility for Safety-Critical Systems",
       "scholar_title": "CBF-Based Hierarchical Quadratic Programs With Guaranteed Feasibility for Safety-Critical Systems",
-      "count": 17,
-      "updated_utc": "2026-09-15T12:00:09Z"
+      "count": 18,
+      "updated_utc": "2026-09-18T12:00:10Z"
     },
     "idmb": {
       "title": "Flexible and Safe Navigation of Autonomous Underwater Vehicles with Input-Dynamics Move Blocking",
       "scholar_title": "Flexible and Safe Navigation of Autonomous Underwater Vehicles with Input-Dynamics Move Blocking",
       "count": 2,
-      "updated_utc": "2026-09-15T12:00:09Z"
+      "updated_utc": "2026-09-18T12:00:10Z"
     },
     "cac": {
       "title": "Certificated Actor-Critic: Hierarchical Reinforcement Learning with Control Barrier Functions for Safe Navigation",
       "scholar_title": "Certificated Actor-Critic: Hierarchical Reinforcement Learning with Control Barrier Functions for Safe Navigation",
       "count": 8,
-      "updated_utc": "2026-09-15T12:00:09Z"
+      "updated_utc": "2026-09-18T12:00:10Z"
     }
   }
 }
