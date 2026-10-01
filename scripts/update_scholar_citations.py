@@ -48,6 +48,10 @@ PAPERS = [
         "key": "cac",
         "title": "Certificated Actor-Critic: Hierarchical Reinforcement Learning with Control Barrier Functions for Safe Navigation",
     },
+    {
+        "key": "transsafe",
+        "title": "Transfer Your Safety: Learning Transferable Model-Free Safety Filters from a Single Policy to Enhance Safety Across Diverse Tasks",
+    },
 ]
 
 MIN_TITLE_MATCH = 0.88
