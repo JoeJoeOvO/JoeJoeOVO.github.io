@@ -1,31 +1,31 @@
 {
   "source": "https://scholar.google.com/citations?user=iD5b5lUAAAAJ&hl=en",
   "source_url": "https://scholar.google.com/citations?user=iD5b5lUAAAAJ&hl=en&cstart=0&pagesize=100&view_op=list_works&sortby=pubdate",
-  "updated_utc": "2026-10-01T05:14:27Z",
+  "updated_utc": "2026-10-03T12:00:08Z",
   "citations": {
     "safetyfirst": {
       "title": "CBF-Based Hierarchical Quadratic Programs With Guaranteed Feasibility for Safety-Critical Systems",
       "scholar_title": "CBF-Based Hierarchical Quadratic Programs With Guaranteed Feasibility for Safety-Critical Systems",
-      "count": 20,
-      "updated_utc": "2026-10-01T05:14:27Z"
+      "count": 22,
+      "updated_utc": "2026-10-03T12:00:08Z"
     },
     "idmb": {
       "title": "Flexible and Safe Navigation of Autonomous Underwater Vehicles with Input-Dynamics Move Blocking",
       "scholar_title": "Flexible and Safe Navigation of Autonomous Underwater Vehicles with Input-Dynamics Move Blocking",
-      "count": 2,
-      "updated_utc": "2026-10-01T05:14:27Z"
+      "count": 3,
+      "updated_utc": "2026-10-03T12:00:08Z"
     },
     "cac": {
       "title": "Certificated Actor-Critic: Hierarchical Reinforcement Learning with Control Barrier Functions for Safe Navigation",
       "scholar_title": "Certificated Actor-Critic: Hierarchical Reinforcement Learning with Control Barrier Functions for Safe Navigation",
       "count": 9,
-      "updated_utc": "2026-10-01T05:14:27Z"
+      "updated_utc": "2026-10-03T12:00:08Z"
     },
     "transsafe": {
       "title": "Transfer Your Safety: Learning Transferable Model-Free Safety Filters from a Single Policy to Enhance Safety Across Diverse Tasks",
       "scholar_title": "Transfer Your Safety: Learning Transferable Model-Free Safety Filters from a Single Policy to Enhance Safety Across Diverse Tasks",
       "count": 0,
-      "updated_utc": "2026-10-01T05:14:27Z"
+      "updated_utc": "2026-10-03T12:00:08Z"
     }
   }
 }
